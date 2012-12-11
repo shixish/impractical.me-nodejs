@@ -1,0 +1,118 @@
+@import '/css/variables.less';
+@import '/css/grid.less';
+@import '/css/elements.less';
+.inner-style(){
+  //background-color: silver;
+  //background: white;
+  //border: 1px solid #666;
+  //.border-radius(20px, 20px, 20px, 20px);
+  //.box-shadow();
+  //box-shadow: @inner-shadow, @outer-shadow;
+  //-webkit-box-shadow: @inner-shadow, @outer-shadow;
+  //-moz-box-shadow: @inner-shadow, @outer-shadow;
+}
+
+h1{
+  font-size: 2.4em;
+}
+
+
+
+body{
+  //background-color: black;
+  background: url('../img/bamboo.jpg');
+  color: @font-color;
+}
+
+header{
+  //margin: 1ex 0 1ex 0;
+	margin: 50px auto 0 auto;
+	padding: 15px 10px 15px 10px;
+	background: @header-background; //#228ecf;
+	.border-radius(20px, 0px, 0px, 20px);
+	width: 940px;
+	#leaves{
+		position: absolute;
+		img{
+			position: absolute;
+			top: -56px;
+			left: -31px;
+		}
+	}
+  a{
+		color: #567822;
+		text-decoration: none;
+		margin-left: 100px;
+  }
+	a:hover{
+		color: #8cb13f;
+		text-decoration: none;
+	}
+	
+}
+
+div.center {
+	background: white;
+  width: 940px;
+	padding: 10px;
+  margin: 0 auto;
+  overflow: hidden;
+	.border-radius(0px, 20px, 20px, 0px);
+}
+
+menu{
+  padding: 0;
+  margin: @border-margin @border-margin+5px @border-margin @border-margin+5px;
+  ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  h3{
+    margin-bottom: .2ex;
+    text-align: center;
+  }
+}
+
+div#main{
+  .row(12);
+  aside{
+    .column(3);
+    .inner-style;
+  }
+  section{
+    .column(9);
+    .inner-style;
+    article{
+      margin: @border-margin;
+    }
+  }
+  div#loading{
+    //position: absolute;
+    //top: 50%;
+    //left: 50%;
+    .column(9);
+    text-align: center;
+    padding-top:50px;
+    padding-bottom:50px;
+    img{
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
+
+footer{
+  .clearfix;
+  margin-top: 1em;
+  text-align: center;
+}
+
+#overlay{
+  background: RGBA(0,0,0,0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -1,12 +1,21 @@
+
+/**
+ * Module dependencies.
+ */
+
 var express = require('express'),
-    app = express.createServer(express.logger()),
+    app = module.exports = express.createServer(),
+    //fs = require('fs'),
     routes = require('./routes'),
     util = require('util'),
+    //path = require('path'),
+    //hbs = require('hbs'),
     now = require('now'), //http://nowjs.com/
+    //assetManager = require('connect-assetmanager'), //https://github.com/mape/connect-assetmanager/
+    //assetHandler = require('connect-assetmanager-handlers'), //https://github.com/mape/connect-assetmanager-handlers
     lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
-
-
 var pub_dir = __dirname + '/public';
+
 // Configuration
 app.configure(function(){
   //app.set('views', __dirname + '/views');
@@ -36,11 +45,11 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-app.get('/', function(request, response) {
-  response.send('Hello World!');
-});
+// Routes
 
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+//app.get('/', routes.index);
+//app.get('/', function(){
+//  
+//});
+
+app.listen(80);
