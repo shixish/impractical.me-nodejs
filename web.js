@@ -1,12 +1,14 @@
 var express = require('express'),
-    app = express.createServer(express.logger()),
+    app = express(),
+    engine = require('ejs-locals'),
     routes = require('./routes'),
-    util = require('util');
+    util = require('util'),
+    path = require('path');
     //now = require('now'), //http://nowjs.com/
     //lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
 
 
-var pub_dir = __dirname + '/public';
+var pub_dir = path.join(__dirname, 'public');
 // Configuration
 app.configure(function(){
   //app.set('views', __dirname + '/views');
@@ -14,10 +16,14 @@ app.configure(function(){
   app.set('view engine', 'ejs');
   //app.use(express.bodyParser());
   //app.use(express.methodOverride());
-  app.use(app.router);
   
-  // disable layout
-  app.set("view options", {layout: true});
+  // use ejs-locals for all ejs templates:
+  app.engine('ejs', engine);
+  
+  app.set('views',__dirname + '/views');
+  app.set('view engine', 'ejs'); // so you can render('index')
+  
+  app.use(app.router);
   
   app.use(express.static(pub_dir));
 
@@ -45,6 +51,15 @@ app.get('/', function(request, response) {
 app.get('/about', function(request, response) {
   response.render('about.ejs', {title:'About Me', breadcrumb:['home']});
 });
+
+app.locals.menu = {
+  'about': 'About',
+  'derp': 'Herp'
+};
+
+app.locals.someHelper = function(name) {
+  return ("hello " + name);
+}
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {

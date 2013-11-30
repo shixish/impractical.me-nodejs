@@ -2,7 +2,8 @@
   "name": "shixish",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.5.x"
+    "express": "3.x",
+    "ejs-locals": "~1.0.2"
   },
   "engines": {
     "node": "0.8.x",
