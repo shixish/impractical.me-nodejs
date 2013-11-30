@@ -10,10 +10,11 @@ var pub_dir = __dirname + '/public';
 // Configuration
 app.configure(function(){
   //app.set('views', __dirname + '/views');
-  app.set('view engine', 'hbs');
+  //app.set('view engine', 'hbs');
+  app.set('view engine', 'ejs');
   //app.use(express.bodyParser());
   //app.use(express.methodOverride());
-  //app.use(app.router);
+  app.use(app.router);
   
   // disable layout
   app.set("view options", {layout: true});
@@ -37,12 +38,12 @@ app.configure('production', function(){
 });
 
 app.get('/', function(request, response) {
-  response.render('index.hbs', {title:'Home'});
+  response.render('index.ejs', {title:'Home'});
   //response.send('Hello World!');
 });
 
 app.get('/about', function(request, response) {
-  response.render('about.hbs', {title:'About Me', breadcrumb:['home']});
+  response.render('about.ejs', {title:'About Me', breadcrumb:['home']});
 });
 
 var port = process.env.PORT || 5000;

@@ -6,7 +6,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{title}}</title>
+    <title>
+      <% if (title){%>
+        <%= title %> - impractical.me
+      <%}else{%>
+        impractical.me
+      <%}%>
+    </title>
     <meta name="description" content="">
     <meta name="author" content="">
   
@@ -81,7 +87,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
-    {{{body}}}
+    <%- body %>
     <div class="container">
       <hr>
       <footer>
@@ -92,10 +98,7 @@
         </div>
       </footer>
     </div><!-- /.container -->
-
-    <!-- JavaScript -->
-<!--    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>-->
+    
     <script src="js/app.js"></script>
   </body>
 </html>
