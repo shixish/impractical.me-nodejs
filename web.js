@@ -1,11 +1,9 @@
 var express = require('express'),
     app = express(),
     engine = require('ejs-locals'),
-    ejs = require('ejs'),
     routes = require('./routes'),
     util = require('util'),
-    path = require('path'),
-    fs = require('fs');
+    path = require('path');
     //now = require('now'), //http://nowjs.com/
     //lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
 
