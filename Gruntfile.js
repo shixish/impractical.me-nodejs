@@ -27,16 +27,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    handlebars: {
-      compile: {
-        options: {
-          namespace: "hbs"
-        },
-        files: {
-          "dist/js/views.js": ["views/*.hbs"]
-        }
-      }
-    },
     uglify: {
       app: {
         files: {
@@ -68,20 +58,7 @@ module.exports = function(grunt) {
         ]
       }
     },
-    //exec: {
-    //  build: {
-    //    cmd: 'jekyll build'
-    //  },
-    //  serve: {
-    //    cmd: 'jekyll serve --watch'
-    //  },
-    //  deploy: {
-    //    cmd: 'rsync --progress -a --delete -e "ssh -q" _site/ myuser@host:mydir/'
-    //  }
-    //}
   });
-  
-  grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-recess');
@@ -91,6 +68,6 @@ module.exports = function(grunt) {
   //grunt.registerTask('default', [ 'less', 'uglify', 'copy', 'exec:build' ]);
   //grunt.registerTask('deploy', [ 'default', 'exec:deploy' ]);
   
-  grunt.registerTask('default', [ 'compass', 'recess', 'handlebars', 'uglify', 'copy' ]);
+  grunt.registerTask('default', [ 'compass', 'recess', 'uglify', 'copy' ]);
   grunt.registerTask('deploy', [ 'default' ]);
 };

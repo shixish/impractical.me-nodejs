@@ -63,9 +63,9 @@ app.get('/about', function(request, response) {
 
 var menu_items = {
   'About':'about',
-  'Resume': {
-    'Koalafications': 'coolbeans'
-  },
+  //'Resume': {
+  //  'Koalafications': '/'
+  //},
 };
 app.locals.menu_items = menu_items;
 
