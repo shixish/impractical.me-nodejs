@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express.createServer(express.logger()),
     routes = require('./routes'),
-    util = require('util'),
+    util = require('util');
     //now = require('now'), //http://nowjs.com/
     //lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
 
@@ -41,8 +41,8 @@ app.get('/', function(request, response) {
   //response.send('Hello World!');
 });
 
-app.get('/me', function(request, response) {
-  response.render('about-me.hbs', {title:'About Me'});
+app.get('/about', function(request, response) {
+  response.render('about.hbs', {title:'About Me', breadcrumb:['home']});
 });
 
 var port = process.env.PORT || 5000;

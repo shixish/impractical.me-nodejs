@@ -1,50 +1,39 @@
-//module.exports = function(grunt) {
-//
-//  // Project configuration.
-//  grunt.initConfig({
-//    pkg: grunt.file.readJSON('package.json'),
-//    uglify: {
-//      options: {
-//        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-//      },
-//      build: {
-//        src: 'src/<%= pkg.name %>.js',
-//        dest: 'build/<%= pkg.name %>.min.js'
-//      }
-//    }
-//  });
-//
-//  // Load the plugin that provides the "uglify" task.
-//  grunt.loadNpmTasks('grunt-contrib-uglify');
-//
-//  // Default task(s).
-//  grunt.registerTask('default', ['uglify']);
-//
-//};
-
+//useful link: http://pletscher.org/blog/2013/05/27/website.html
 module.exports = function(grunt) {
   grunt.initConfig({
-    less: {
-      production: {
-        options: {
-          paths: ["bower_components/bootstrap/less"],
-          yuicompress: true
-        }/*,
-        files: {
-          "public/css/application.min.css": "assets/_less/application.less"
-        }*/
-      }
-    },
     compass: {
       dist: {
         options: {
-          config: 'config/config.rb',
-          environment: 'production'
+          sassDir: 'assets/sass',
+          cssDir: 'dist/sass'
+          //environment: 'production'
         }
-      },
-      dev: {
+      }
+    },
+    recess: {
+      dist: {
         options: {
-          config: 'config/config.rb'
+          compile: true
+        },
+        files: {
+          'public/css/screen.css': [
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'dist/sass/screen.css'
+          ],
+          'public/css/print.css': [
+            //'bower_components/bootstrap/dist/css/bootstrap.css',
+            'dist/sass/print.css'
+          ]
+        }
+      }
+    },
+    handlebars: {
+      compile: {
+        options: {
+          namespace: "hbs"
+        },
+        files: {
+          "dist/js/views.js": ["views/*.hbs"]
         }
       }
     },
@@ -53,26 +42,24 @@ module.exports = function(grunt) {
         files: {
           'public/js/app.js': [
             'bower_components/jquery/jquery.js',
-            'bower_components/bootstrap/js/bootstrap-collapse.js',
-            'bower_components/bootstrap/js/bootstrap-scrollspy.js',
-            'bower_components/bootstrap/js/bootstrap-button.js',
-            'bower_components/bootstrap/js/bootstrap-affix.js'
-           ]
+            'bower_components/bootstrap/js/transition.js',
+            'bower_components/bootstrap/js/alert.js',
+            'bower_components/bootstrap/js/button.js',
+            'bower_components/bootstrap/js/carousel.js',
+            'bower_components/bootstrap/js/collapse.js',
+            'bower_components/bootstrap/js/dropdown.js',
+            'bower_components/bootstrap/js/modal.js',
+            'bower_components/bootstrap/js/tooltip.js',
+            'bower_components/bootstrap/js/popover.js',
+            'bower_components/bootstrap/js/scrollspy.js',
+            'bower_components/bootstrap/js/tab.js',
+            'bower_components/bootstrap/js/affix.js',
+            'dist/js/views.js',
+            'assets/js/app.'
+          ],
+          'public/js/libs/modernizr.min.js': 'bower_components/modernizr/modernizr.js'
         }
       },
-      //jquery: {
-      //  files: {
-      //    'public/js/jquery.min.js': 'components/jquery/jquery.js'
-      //  }
-      //},
-      //bootstrap: {
-      //  files: {
-      //    'public/js/bootstrap.min.js': ['components/bootstrap/js/bootstrap-collapse.js',
-      //                                   'components/bootstrap/js/bootstrap-scrollspy.js',
-      //                                   'components/bootstrap/js/bootstrap-button.js',
-      //                                   'components/bootstrap/js/bootstrap-affix.js']
-      //  }
-      //}
     },
     copy: {
       bootstrap: {
@@ -94,14 +81,16 @@ module.exports = function(grunt) {
     //}
   });
   
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-exec');
   
   //grunt.registerTask('default', [ 'less', 'uglify', 'copy', 'exec:build' ]);
   //grunt.registerTask('deploy', [ 'default', 'exec:deploy' ]);
   
-  grunt.registerTask('default', [ 'less', 'uglify', 'copy' ]);
+  grunt.registerTask('default', [ 'compass', 'recess', 'handlebars', 'uglify', 'copy' ]);
   grunt.registerTask('deploy', [ 'default' ]);
 };
