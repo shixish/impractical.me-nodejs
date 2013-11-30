@@ -2,8 +2,8 @@ var express = require('express'),
     app = express.createServer(express.logger()),
     routes = require('./routes'),
     util = require('util'),
-    now = require('now'), //http://nowjs.com/
-    lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
+    //now = require('now'), //http://nowjs.com/
+    //lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
 
 
 var pub_dir = __dirname + '/public';
@@ -20,12 +20,12 @@ app.configure(function(){
   
   app.use(express.static(pub_dir));
 
-  app.use(lessMiddleware({
-    src: __dirname + '/public',
-    compress: true,
-    force: true,
-    once: false
-  }));
+  //app.use(lessMiddleware({
+  //  src: __dirname + '/public',
+  //  compress: true,
+  //  force: true,
+  //  once: false
+  //}));
 });
 
 app.configure('development', function(){

@@ -2,12 +2,18 @@
   "name": "shixish",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.5.x",
-    "now": "*",
-    "less-middleware": "*"
+    "express": "2.5.x"
   },
   "engines": {
     "node": "0.8.x",
-    "npm": "1.1.x"
+    "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-compass": "~0.6.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-exec": "~0.4.2",
+    "grunt-contrib-less": "~0.8.2"
   }
 }

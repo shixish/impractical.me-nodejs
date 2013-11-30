@@ -1,0 +1,13 @@
+{
+  "name": "impractical.me",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "~3",
+    "jquery": "~2"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
