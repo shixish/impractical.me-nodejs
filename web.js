@@ -12,20 +12,14 @@ var pub_dir = path.join(__dirname, 'public'),
     views_dir = path.join(__dirname, 'views');
 // Configuration
 app.configure(function(){
-  //app.set('views', __dirname + '/views');
-  //app.set('view engine', 'hbs');
   app.set('view engine', 'ejs');
-  //app.use(express.bodyParser());
-  //app.use(express.methodOverride());
-  
-  // use ejs-locals for all ejs templates:
   app.engine('ejs', engine);
   
   app.set('views', views_dir);
   app.set('view engine', 'ejs'); // so you can render('index')
   //app.set('view options', {
-  //    open: '{{',
-  //    close: '}}'
+  //    open: '<?',
+  //    close: '?>'
   //});
   
   app.use(app.router);
@@ -33,13 +27,10 @@ app.configure(function(){
   app.use(express.static(pub_dir));
   
   app.set('title', 'impractical.me');
-
-  //app.use(lessMiddleware({
-  //  src: __dirname + '/public',
-  //  compress: true,
-  //  force: true,
-  //  once: false
-  //}));
+  
+  app.use(function(req, res){
+    res.status(404).render('404.ejs', {title: 'Page not found'});
+  });
 });
 
 app.configure('development', function(){
@@ -59,13 +50,12 @@ app.get('/about', function(request, response) {
   response.render('about.ejs', {title:'About Me', breadcrumb:['home']});
 });
 
-var menu_items = {
+app.locals.menu_items = {
   'About':'about',
   //'Resume': {
   //  'Koalafications': '/'
   //},
 };
-app.locals.menu_items = menu_items;
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
