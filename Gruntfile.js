@@ -4,30 +4,31 @@ module.exports = function(grunt) {
     compass: {
       dist: {
         options: {
-          sassDir: 'assets/sass',
-          cssDir: 'dist/sass'
-          //environment: 'production'
+          //sassDir: 'assets/sass',
+          //cssDir: 'dist/sass'
+          ////environment: 'production'
+          config: 'config.rb'
         }
       }
     },
-    recess: {
-      dist: {
-        options: {
-          compile: true,
-          compress: true
-        },
-        files: {
-          'public/css/screen.css': [
-            'bower_components/bootstrap/dist/css/bootstrap.min.css',
-            'dist/sass/screen.css'
-          ],
-          'public/css/print.css': [
-            //'bower_components/bootstrap/dist/css/bootstrap.css',
-            'dist/sass/print.css'
-          ]
-        }
-      }
-    },
+    //recess: {
+    //  dist: {
+    //    options: {
+    //      compile: true,
+    //      compress: true
+    //    },
+    //    files: {
+    //      'public/css/screen.css': [
+    //        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+    //        'dist/sass/screen.css'
+    //      ],
+    //      'public/css/print.css': [
+    //        //'bower_components/bootstrap/dist/css/bootstrap.css',
+    //        'dist/sass/print.css'
+    //      ]
+    //    }
+    //  }
+    //},
     uglify: {
       app: {
         files: {
@@ -45,8 +46,7 @@ module.exports = function(grunt) {
             'bower_components/bootstrap/js/scrollspy.js',
             'bower_components/bootstrap/js/tab.js',
             'bower_components/bootstrap/js/affix.js',
-            'dist/js/views.js',
-            'assets/js/app.'
+            'assets/js/app.js'
           ],
           'public/js/libs/modernizr.min.js': 'bower_components/modernizr/modernizr.js'
         }
@@ -69,6 +69,6 @@ module.exports = function(grunt) {
   //grunt.registerTask('default', [ 'less', 'uglify', 'copy', 'exec:build' ]);
   //grunt.registerTask('deploy', [ 'default', 'exec:deploy' ]);
   
-  grunt.registerTask('default', [ 'compass', 'recess', 'uglify', 'copy' ]);
+  grunt.registerTask('default', [ 'compass', 'uglify', 'copy' ]);
   grunt.registerTask('deploy', [ 'default' ]);
 };

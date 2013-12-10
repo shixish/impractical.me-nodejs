@@ -73,6 +73,12 @@ body {
   text-decoration: none;
   color: inherit;
 }
+.list-social-icons-giant{
+  @extend .list-social-icons;
+  .tooltip.top{
+    margin-top: -43px;
+  }
+}
 
 .facebook-link a:hover {
   color: #3b5998;
@@ -88,6 +94,10 @@ body {
 
 .google-plus-link a:hover {
   color: #d14836;
+}
+
+.github-link a:hover{
+  color: #4183c4;
 }
 
 /* Service Page Styles */
@@ -122,9 +132,12 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 767px) {
-
-.carousel {
-  height: 70%; /* increases the carousel height so it looks good on phones */
+  .carousel {
+    height: 70%; /* increases the carousel height so it looks good on phones */
+  }
 }
 
+
+.carousel-caption{
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
