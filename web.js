@@ -43,11 +43,10 @@ app.configure('production', function(){
 
 app.get('/', function(request, response) {
   response.render('index.ejs', {title:'Home'});
-  //response.send('Hello World!');
 });
 
 
-var menu_items = {};
+app.locals.menu_items = {};
 
 make_link('about', 'About Me', 'About');
 
@@ -55,13 +54,19 @@ make_link('experiments', 'Experiments');
 
 function make_link(url, title, menu_title) {
   if (!menu_title) menu_title = title;
-  menu_items[menu_title] = url;
+  app.locals.menu_items[menu_title] = url;
   app.get('/'+url, function(request, response) {
     response.render(url+'.ejs', {title:title, breadcrumb:['home']});
   });
 }
 
-app.locals.menu_items = menu_items;
+app.locals.carousel_indicators = function(id, pages){
+  var ret = '';
+  for (var i = 0; i<pages; i++) {
+    ret += '<li data-target="'+id+'" data-slide-to="'+i+'"'+(i==0?' class="active"':'')+'></li>';
+  }
+  return '<ol class="carousel-indicators">'+ret+'</ol>';
+}
 
 //app.locals.menu_items = {
 //  'About':'about',
