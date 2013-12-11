@@ -48,16 +48,52 @@ app.get('/', function(request, response) {
 
 app.locals.menu_items = {};
 
-make_link('about', 'About Me', 'About');
+//make_link('about', 'About Me', 'About');
+//
+//make_link('experiments', 'Experiments');
 
-make_link('experiments', 'Experiments');
+//function make_link(url, title, menu_title) {
+//  if (!menu_title) menu_title = title;
+//  app.locals.menu_items[menu_title] = url;
+//  app.get('/'+url, function(request, response) {
+//    response.render(url+'.ejs', {title:title, breadcrumb:['home']});
+//  });
+//}
 
-function make_link(url, title, menu_title) {
-  if (!menu_title) menu_title = title;
-  app.locals.menu_items[menu_title] = url;
-  app.get('/'+url, function(request, response) {
-    response.render(url+'.ejs', {title:title, breadcrumb:['home']});
-  });
+//app.locals.menu_items['Chroma Key'] = url;
+//app.get('/'+url, function(request, response) {
+//  response.render(url+'.ejs', {title:title, breadcrumb:['home', '']});
+//});
+
+var menu = {
+  'about':{
+    title: "About Me",
+    link: "About",
+  },
+  'experiments':{
+    title: "Experiments",
+  },
+  'experiments/chroma-key':{
+    title: "Experiments",
+  },
+};
+
+var main_menu = {
+  'About':'about',
+  'Experiments':'experiments',
+  //'Resume': {
+  //  'Koalafications': '/'
+  //},
+};
+app.locals.menu_items = main_menu;
+
+
+for (var url in menu){
+  (function(url, data) {
+    app.get('/'+url, function(request, response) {
+      response.render(url+'.ejs', {title:data.title, breadcrumb:url.split('/')});
+    });
+  })(url, menu[url]);
 }
 
 app.locals.carousel_indicators = function(id, pages){
