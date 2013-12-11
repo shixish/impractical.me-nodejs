@@ -73,7 +73,13 @@ body {
   text-decoration: none;
   color: inherit;
 }
-.list-social-icons-giant{
+.list-social-icons-3x{
+  @extend .list-social-icons;
+  .tooltip.top{
+    margin-top: -20px;
+  }
+}
+.list-social-icons-5x{
   @extend .list-social-icons;
   .tooltip.top{
     margin-top: -43px;

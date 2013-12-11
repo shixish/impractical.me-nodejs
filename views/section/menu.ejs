@@ -1,18 +1,18 @@
 <ul class="nav navbar-nav navbar-right">
-  <%for (var label in menu_items) {
-    var value = menu_items[label];
+  <%for (var label in main_menu) {
+    var value = main_menu[label];
     if (typeof value == 'object') {%>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=label%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <%for (var inner_label in value) {
             var inner_value = value[inner_label];%>
-            <li><a href="<%-inner_value%>"><%=inner_label%></a></li>
+            <li><a href="/<%-inner_value%>"><%=inner_label%></a></li>
           <%}%>
         </ul>
       </li>
     <%}else{%>
-      <li><a href="<%-value%>"><%=label%></a></li>
+      <li><a href="/<%-value%>"><%=label%></a></li>
     <%}
   }%>
 </ul>

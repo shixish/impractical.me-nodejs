@@ -29,7 +29,7 @@ app.configure(function(){
   app.set('title', 'impractical.me');
   
   app.use(function(req, res){
-    res.status(404).render('404.ejs', {title: 'Page not found'});
+    res.status(404).render('404.ejs', {node: nodes['404']});
   });
 });
 
@@ -41,31 +41,16 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', function(request, response) {
-  response.render('index.ejs', {title:'Home'});
-});
 
-
-app.locals.menu_items = {};
-
-//make_link('about', 'About Me', 'About');
-//
-//make_link('experiments', 'Experiments');
-
-//function make_link(url, title, menu_title) {
-//  if (!menu_title) menu_title = title;
-//  app.locals.menu_items[menu_title] = url;
-//  app.get('/'+url, function(request, response) {
-//    response.render(url+'.ejs', {title:title, breadcrumb:['home']});
-//  });
-//}
-
-//app.locals.menu_items['Chroma Key'] = url;
-//app.get('/'+url, function(request, response) {
-//  response.render(url+'.ejs', {title:title, breadcrumb:['home', '']});
-//});
-
-var menu = {
+var nodes = {
+  //special:
+  'home':{
+    title: 'Home',
+  },
+  '404':{
+    title: 'Page not found',
+  },
+  //regular:
   'about':{
     title: "About Me",
     link: "About",
@@ -74,7 +59,8 @@ var menu = {
     title: "Experiments",
   },
   'experiments/chroma-key':{
-    title: "Experiments",
+    title: "Image Processing Project",
+    github: 'https://github.com/shixish/chroma-key',
   },
 };
 
@@ -85,16 +71,22 @@ var main_menu = {
   //  'Koalafications': '/'
   //},
 };
-app.locals.menu_items = main_menu;
 
+//handle 'home' seperately...
+app.get('/', function(request, response) {
+  response.render('index.ejs', {node:nodes['home']});
+});
 
-for (var url in menu){
+for (var url in nodes){
   (function(url, data) {
     app.get('/'+url, function(request, response) {
-      response.render(url+'.ejs', {title:data.title, breadcrumb:url.split('/')});
+      response.render(url+'.ejs', {node:data, url:url});
     });
-  })(url, menu[url]);
+  })(url, nodes[url]);
 }
+
+app.locals.nodes = nodes;
+app.locals.main_menu = main_menu;
 
 app.locals.carousel_indicators = function(id, pages){
   var ret = '';
@@ -103,6 +95,8 @@ app.locals.carousel_indicators = function(id, pages){
   }
   return '<ol class="carousel-indicators">'+ret+'</ol>';
 }
+
+app.locals.views_dir = views_dir;
 
 //app.locals.menu_items = {
 //  'About':'about',

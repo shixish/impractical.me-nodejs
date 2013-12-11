@@ -2,7 +2,19 @@
   <div class="col-lg-12">
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
-      <li class="active"><%=title%></li>
+      <%
+      var url_pos = 0;
+      while (url_pos = url.indexOf('/', url_pos)+1) {
+        var bc_url = url.substr(0,url_pos-1),
+            bc_node = nodes[bc_url],
+            bc_label = bc_node.link?bc_node.link:bc_node.title;
+        %>
+          <li><a href="/<%-bc_url%>"><%=bc_label%></a></li>
+        <%
+      }
+      var link_label = node.link?node.link:node.title;
+      %>
+      <li class="active"><%=link_label%></li>
     </ol>
   </div>
 </div>
