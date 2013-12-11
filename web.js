@@ -38,7 +38,7 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+  app.use(express.errorHandler());
 });
 
 app.get('/', function(request, response) {
@@ -46,16 +46,30 @@ app.get('/', function(request, response) {
   //response.send('Hello World!');
 });
 
-app.get('/about', function(request, response) {
-  response.render('about.ejs', {title:'About Me', breadcrumb:['home']});
-});
 
-app.locals.menu_items = {
-  'About':'about',
-  //'Resume': {
-  //  'Koalafications': '/'
-  //},
-};
+var menu_items = {};
+
+make_link('about', 'About Me', 'About');
+
+make_link('experiments', 'Experiments');
+
+function make_link(url, title, menu_title) {
+  if (!menu_title) menu_title = title;
+  menu_items[menu_title] = url;
+  app.get('/'+url, function(request, response) {
+    response.render(url+'.ejs', {title:title, breadcrumb:['home']});
+  });
+}
+
+app.locals.menu_items = menu_items;
+
+//app.locals.menu_items = {
+//  'About':'about',
+//  'Experiments':'experiments',
+//  //'Resume': {
+//  //  'Koalafications': '/'
+//  //},
+//};
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
