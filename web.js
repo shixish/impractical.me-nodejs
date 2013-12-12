@@ -103,6 +103,7 @@ app.get('/', function(request, response) {
   response.render('index.ejs', {node:nodes['home']});
 });
 
+//generate the routes from the nodes data above.
 for (var url in nodes){
   (function(url, data) {
     app.get('/'+url, function(request, response) {
@@ -111,30 +112,17 @@ for (var url in nodes){
   })(url, nodes[url]);
 }
 
+//allow templates to use these variables:
 app.locals.nodes = nodes;
 app.locals.main_menu = main_menu;
 
-app.locals.carousel_indicators = function(id, pages){
-  var ret = '';
-  for (var i = 0; i<pages; i++) {
-    ret += '<li data-target="'+id+'" data-slide-to="'+i+'"'+(i==0?' class="active"':'')+'></li>';
-  }
-  return '<ol class="carousel-indicators">'+ret+'</ol>';
-}
-
+//returns a random id as a string.
 app.locals.random_id = function(){
   return Math.random().toString().substr(2);
 }
 
+//useful if you need to get an absolute url to a template file
 app.locals.views_dir = views_dir;
-
-//app.locals.menu_items = {
-//  'About':'about',
-//  'Experiments':'experiments',
-//  //'Resume': {
-//  //  'Koalafications': '/'
-//  //},
-//};
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
