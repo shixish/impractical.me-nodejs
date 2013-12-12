@@ -1,2 +1,7 @@
 <% layout('experiment-layout') -%>
-<img class="img-responsive" src="http://placehold.it/750x450&text=Demo">
+<% script('/experiments/chroma-key/scripts/getusermedia.bundle.js') -%>
+<% script('/experiments/chroma-key/scripts/attachmediastream.bundle.js') -%>
+<% script('/experiments/chroma-key/scripts/dat.gui.min.js') -%>
+<% script('/experiments/chroma-key/scripts/main.js') -%>
+<% stylesheet('/experiments/chroma-key/style.css') -%>
+<div id="demo-content"></div>
