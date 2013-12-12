@@ -2,88 +2,19 @@
 <div class="container">
   <% include section/header %>
   <% include section/breadcrumb %>
-  <div class="row">
-    <div class="col-md-6 portfolio-item">
-      <div id="chroma-key" class="carousel slide">
-        <!-- Indicators -->
-        <%- carousel_indicators('#chroma-key', 6) %>
-        
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img class="img-responsive" src="/experiments/chroma-key/imgs/results/normal.jpg">
-            <div class="carousel-caption">
-              <strong>Normal</strong>
-            </div>
-          </div>
-          <div class="item">
-            <img class="img-responsive" src="/experiments/chroma-key/imgs/results/chroma-key.jpg">
-            <div class="carousel-caption">
-              <strong>Key out blue</strong>
-            </div>
-          </div>
-          <div class="item">
-            <img class="img-responsive" src="/experiments/chroma-key/imgs/results/subtraction.jpg">
-            <div class="carousel-caption">
-              <strong>Subtract the background</strong>
-            </div>
-          </div>
-          <div class="item">
-            <img class="img-responsive" src="/experiments/chroma-key/imgs/results/subtraction2.jpg">
-            <div class="carousel-caption">
-              <strong>Subtract the background (junk)</strong>
-            </div>
-          </div>
-          <div class="item">
-            <img class="img-responsive" src="/experiments/chroma-key/imgs/results/fancy.jpg">
-            <div class="carousel-caption">
-              <strong>Fancy made up method</strong>
-            </div>
-          </div>
-          <div class="item">
-            <img class="img-responsive" src="/experiments/chroma-key/imgs/results/fancy2.jpg">
-            <div class="carousel-caption">
-              <strong>Creepy fancy</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h3><a href="/experiments/chroma-key">Image Processing Project</a></h3>
-      <p>I took an image processing class. I spent about a day making this... The idea is to do chroma keying (green screen).</p>
-    </div>
-
-    <div class="col-md-6 portfolio-item">
-      <a href="portfolio-item.html"><img class="img-responsive" src="http://placehold.it/750x450"></a>
-      <h3><a href="portfolio-item.html">Project Name</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 portfolio-item">
-      <a href="portfolio-item.html"><img class="img-responsive" src="http://placehold.it/750x450"></a>
-      <h3><a href="portfolio-item.html">Project Name</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-    </div>
-
-    <div class="col-md-6 portfolio-item">
-      <a href="portfolio-item.html"><img class="img-responsive" src="http://placehold.it/750x450"></a>
-      <h3><a href="portfolio-item.html">Project Name</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 portfolio-item">
-      <a href="portfolio-item.html"><img class="img-responsive" src="http://placehold.it/750x450"></a>
-      <h3><a href="portfolio-item.html">Project Name</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-    </div>
-
-    <div class="col-md-6 portfolio-item">
-      <a href="portfolio-item.html"><img class="img-responsive" src="http://placehold.it/750x450"></a>
-      <h3><a href="portfolio-item.html">Project Name</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-    </div>
-  </div>
+  
+  <% for (var i in node.experiments){ %>
+    <% if (i%2==0){ %>
+      <div class="row">
+    <% } %>
+    <%
+      teaser_url = node.experiments[i];
+      teaser_node = nodes[teaser_url];
+    %>
+    <% include experiments/section/teaser %>
+    
+    <% if (i%2==1 || i==node.experiments.length-1){ %>
+      </div><!-- end of row-->
+    <% } %>
+  <% } %>
 </div>
