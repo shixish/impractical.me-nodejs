@@ -94,7 +94,7 @@ var nodes = {
   'experiments/fractal-fun':{
     title: "Fractal Fun",
     date: 1310437739429,
-    description: "This is my funky fractal generator I made a while back.",
+    description: "This is my funky fractal generator that I made a while back.",
     github: 'https://github.com/shixish/fractal-generator',
     images: [
       {
