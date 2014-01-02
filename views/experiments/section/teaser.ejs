@@ -31,6 +31,11 @@
       <a href="/<%= teaser_url %>"><img class="img-responsive" src="http://placehold.it/750x450"></a>
     <% } %>
   </div>
-  <h3><a href="/<%= teaser_url %>"><%= teaser_node.title %></a></h3>
+  <h3>
+    <a href="/<%= teaser_url %>"><%= teaser_node.title %></a>
+    <% if (teaser_node.date){ %>
+      <small><%= format_date(teaser_node.date) %></small>
+    <% } %>
+  </h3>
   <p><%= teaser_node.description %></p>
 </div>

@@ -1,7 +1,7 @@
 <% layout('layout') -%>
 <%/* script('foo.js') -*/%>
 <%/* stylesheet('foo.css') -*/%>
-<div id="myCarousel" class="carousel slide">
+<div class="carousel slide">
   <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -36,26 +36,23 @@
       <span class="icon-next"></span>
     </a>
 </div>
-
-<div class="section">
-
-  <div class="container">
-
-    <div class="row text-center">
-      <div class="col-lg-3 col-md-3">
-      </div>
-      <div class="col-lg-3 col-md-3">
-        <h3><i class="fa fa-user"></i> <a href="/about">About Me</a></h3>
-        <p>Get the lowdown on who I am, where I'm from, and what I do.</p>
-      </div>
-      <div class="col-lg-3 col-md-3">
-        <h3><i class="fa fa-beer"></i> <a href="/experiments">Experiments</a></h3>
-        <p>Check out some of the wonky stuff I've put together.</p>
-      </div>
-      <div class="col-lg-3 col-md-3">
-      </div>
-    </div><!-- /.row -->
-
-  </div><!-- /.container -->
-
-</div><!-- /.section -->
+<div class="content">
+  <div class="section">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-lg-3 col-md-3">
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <h3><i class="fa fa-user"></i> <a href="/about">About Me</a></h3>
+          <p>Get the lowdown on who I am, where I'm from, and what I do.</p>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <h3><i class="fa fa-beer"></i> <a href="/experiments">Experiments</a></h3>
+          <p>Check out some of the wonky stuff I've put together.</p>
+        </div>
+        <div class="col-lg-3 col-md-3">
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div><!-- /.section -->
+</div>

@@ -14,6 +14,32 @@ html, body {
 
 body {
   padding-top: 50px; /* body padding for fixed top nav */
+  background: #e1e1e1;
+}
+
+q{
+  font-style: italic;  
+}
+
+.content{
+  background: white;
+  padding-bottom: 20px;
+}
+footer{
+  padding: 20px 0;
+  min-height: 80px;
+  margin-top: 10px;
+}
+
+.callout {
+  @extend .section-colored;
+  margin-top: 50px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.rounded{
+  border-radius: 4px;
 }
 
 .img-home-portfolio,
@@ -106,6 +132,10 @@ body {
   color: #4183c4;
 }
 
+.stack-overflow-link a:hover{
+  color: #818085;
+}
+
 /* Service Page Styles */
 .service-icon {
   font-size: 50px;
@@ -131,11 +161,6 @@ body {
   font-style: italic;
 }
 
-/* Footer Styles */
-footer {
-  margin: 50px 0;
-}
-
 /* Responsive Styles */
 @media (max-width: 767px) {
   .carousel {
@@ -155,4 +180,20 @@ footer {
   padding-bottom: 60%;
   max-width: 100%;
   overflow: hidden;
+}
+
+//about me page
+.js-skills{
+  @include column-count(2);
+  list-style: none;
+  padding: 0;
+  li{
+    padding:5px;
+  }
+  li:nth-child(even){
+    background: #f4f4f4;
+  }
+  li:nth-child(odd){
+    background: #e6e6e6;
+  }
 }

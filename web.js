@@ -59,12 +59,15 @@ var nodes = {
     title: "Experiments",
     experiments: [
       'experiments/chroma-key',
+      'experiments/fractal-fun',
     ]
   },
   'experiments/chroma-key':{
     title: "Image Processing Project",
     subtitle: "Chroma Key",
+    date: 1386889893176,
     description: "I made this project using HTML5 Canvas and the new getUserMedia() function to interact with the user's webcam through the browser. I made this for my Image Processing class (Fall 2013). I spent about a day working on it. The idea is to do chroma keying (green screen) to remove certain pixels. I tried out a couple of different made-up techniques. Check out the results!",
+    instructions: "I think this only works in Google Chrome, but it may also work in Firefox (dunno). Your browser should ask you if you want to share your webcam, then you should see your beautiful mug pop up over the image of the beach.<br>There are three settings. Each of which work poorly (lol), but are fun nonetheless.",
     github: 'https://github.com/shixish/chroma-key',
     images: [
       {
@@ -86,6 +89,18 @@ var nodes = {
         src: "/experiments/chroma-key/imgs/results/fancy2.jpg",
         caption: "Creepy fancy",
       },
+    ]
+  },
+  'experiments/fractal-fun':{
+    title: "Fractal Fun",
+    date: 1310437739429,
+    description: "This is my funky fractal generator I made a while back.",
+    github: 'https://github.com/shixish/fractal-generator',
+    images: [
+      {
+        src: "/experiments/fractal-fun/teaser.png",
+        caption: "Normal",
+      }
     ]
   },
 };
@@ -119,6 +134,30 @@ app.locals.main_menu = main_menu;
 //returns a random id as a string.
 app.locals.random_id = function(){
   return Math.random().toString().substr(2);
+}
+
+var short_mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var long_mon = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+function format_day(day){
+  var last_digit = day%10, last_two_digits = day%100;
+  if (last_two_digits == 11 || last_two_digits == 12 || last_two_digits == 13) {
+    return day + "th";
+  }
+  switch (last_digit) {
+    case 1:
+      return day + "st";
+    case 2:
+      return day + "nd";
+    case 3:
+      return day + "rd";
+    default:
+      return day + "th";
+  }
+}
+
+app.locals.format_date = function(timestamp, use_short){
+  var date = new Date(timestamp); use_mon = use_short?short_mon:long_mon;
+  return use_mon[date.getMonth()] + " " + format_day(date.getDate()) + ", " + date.getFullYear();
 }
 
 //useful if you need to get an absolute url to a template file

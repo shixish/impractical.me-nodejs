@@ -1,10 +1,10 @@
-<% layout('layout') -%>
+<% layout('content-layout') -%>
 <div class="container">
   <% include section/header %>
   <% include section/breadcrumb %>
   <div class="row">
     <div class="col-md-4">
-      <img class="img-responsive" src="/img/me-small.jpg">
+      <img class="img-responsive rounded" src="/img/me-small.jpg">
     </div>
     <div class="col-md-8">
       <h2>What it do, buddeh boo?</h2>
@@ -13,7 +13,7 @@
         I make websites.
       </p>
       <p>
-        This site is my personal playground.
+        This site is my playground.
       </p>
     </div>
   </div>
@@ -24,14 +24,14 @@
     </div>
 
     <div class="col-sm-4">
-      <img class="img-responsive" src="/img/graduation-small.jpg">
+      <img class="img-responsive rounded" src="/img/graduation-small.jpg">
         <h3>Degree in Computer Science<br><small>Fall 2013</small></h3>
-        <p>I completed my Bachelors Degree in Computer Science from the University of Hawaii at Hilo on December, 2013.</p>
+        <p>I completed my Bachelors Degree in Computer Science from the University of Hawaii at Hilo in December, 2013.</p>
         <p>I also received a certificate for database management (it basically means I know my SQL).</p>
     </div>
     
     <div class="col-sm-4">
-      <img class="img-responsive" src="/img/drupal-small.jpg">
+      <img class="img-responsive rounded" src="/img/drupal-small.jpg">
         <h3>Drupal Developer<br><small>About <%= (new Date().getFullYear() - 2010) %> years...</small></h3>
         <ul>
           <li>Custom Modules</li>
@@ -46,51 +46,53 @@
     </div>
     
     <div class="col-sm-4">
-      <img class="img-responsive" src="/img/work-small.jpg">
-        <h3>Experience<br><small>About <%= (new Date().getFullYear() - 2001) %> years...</small></h3>
+      <img class="img-responsive rounded" src="/img/work-small.jpg">
+        <h3>Web Experience<br><small>About <%= (new Date().getFullYear() - 2001) %> years...</small></h3>
         <p>
-          I started making basic websites in elementary school.
+          I started making basic websites in intermediate school.
           I then progressed to Flash (AS2 then 3): Made a few sites, games, toys, experiments, etc.
           I moved on to PHP thoughout high school, and worked on various projects for friends...
           After that, I jumped on the "web 2.0" wagon, and decided that flash was for noobs.<br>
           <strong>JavaScript is the shit.</strong><br>
-          <br>
-          I like the web. I want to keep working on web projects. I want to expand my repertoire and create killer apps.
         </p>
     </div>
+  </div>
+  
+  <div class="callout">
+    <big><q>I like the web. I want to keep working on web projects. I want to expand my repertoire and create killer apps.</q></big>
   </div>
   
   <div class="row">
     <div class="col-lg-12">
       <h2 class="page-header">Interests</h2>
     </div>
-
     <div class="col-sm-4">
-      <img class="img-responsive" src="/img/html5-small.jpg">
+      <img class="img-responsive rounded" src="/img/html5-small.jpg">
         <h3>Web Technology<br><small>Dat HTML5 Goodie Goodness</small></h3>
-        <p>I loves me some Javascript.</p>
         I've done things with:
-        <ul>
+        <ul class="js-skills">
+          <li><a href="http://jquery.com/">jQuery</a></li>
+          <li><a href="http://compass-style.org/">Compass</a> (SCSS)</li>
           <li><a href="http://nodejs.org/">Node.js</a></li>
           <li><a href="http://www.meteor.com/">Meteor</a></li>
           <li><a href="http://backbonejs.org/">Backbone.js</a></li>
           <li>SVG (using <a href="http://raphaeljs.com/">Raphael</a>)</li>
           <li>Canvas (<a href="https://github.com/mrdoob/three.js/">three.js</a>, etc)</li>
-          <li><a href="https://www.djangoproject.com/">Django</a> (using python)</li>
+          <li>Some <a href="https://www.djangoproject.com/">Django</a> (python)</li>
           <li><a href="http://gruntjs.com/">Grunt</a></li>
         </ul>
         ... and lots of other little goodie goodness.
     </div>
     
     <div class="col-sm-4">
-      <img class="img-responsive" src="/img/Table-Tennis-small.jpg">
+      <img class="img-responsive rounded" src="/img/Table-Tennis-small.jpg">
         <h3>Ping Pong<br><small>Member of Big Island Table Tennis Association</small></h3>
         <p>We play on weekends for a couple hours. I get my butt kicked, but I like the challenge, and I believe I'm getting better. =P</p>
         <p>Visit <a href="http://bitta.org">BITTA.org</a> for more</p>
     </div>
     
     <div class="col-sm-4">
-      <img class="img-responsive" src="/img/kerigan-small.jpg">
+      <img class="img-responsive rounded" src="/img/kerigan-small.jpg">
         <h3>Video Games<br><small>Because it's fun</small></h3>
         I like:
         <ul>
@@ -104,7 +106,6 @@
   <div class="row">
     <div class="col-lg-12">
       <h2 class="page-header">Social profiles</h2>
-      
     </div>
     <div class="col-lg-12 text-center">
       <ul class="list-unstyled list-inline list-social-icons-5x">
@@ -113,6 +114,7 @@
         <li class="tooltip-social linkedin-link"><a href="http://lnkd.in/vbVRjh" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-5x"></i></a></li>
         <li class="tooltip-social google-plus-link"><a href="https://plus.google.com/105340188160086859781/posts" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-5x"></i></a></li>
         <li class="tooltip-social twitter-link"><a href="https://twitter.com/shixish" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-5x"></i></a></li>
+        <li class="tooltip-social stack-overflow-link"><a href="http://stackoverflow.com/users/711895/andrew" data-toggle="tooltip" data-placement="top" title="Stack Overflow"><i class="fa fa-stack-overflow fa-5x"></i></a></li>
       </ul>
     </div>
   </div>
