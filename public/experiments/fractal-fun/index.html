@@ -28,11 +28,14 @@
 			Zoom:<input name="zoom" type="range" min="-3.0" max="0.00001" step="0.00001" style="width:100px;">
 			X offset:<input name="offx" type="number" min="-4.0" max="4.0" step="0.5" style="width:50px;">
 			Y offset:<input name="offy" type="number" min="-4.0" max="4.0" step="0.5" style="width:50px;">
-			<input name="fn" type="radio" value="sq">squared 
-			<input name="fn" type="radio" value="sin">sin 
-			<input name="fn" type="radio" value="cos">cos
-			<input name="fn" type="radio" value="sinh">sinh 
-			<input name="fn" type="radio" value="cosh">cosh
+			Function: 
+			<select name="fn">
+				<option value="sq">squared</option>
+				<option value="sin">sine</option>
+				<option value="cos">cosine</option>
+				<option value="sinh">sinh</option>
+				<option value="cosh">cosh</option>
+			</select>
 			<input name="colorize" type="checkbox">Colorize
 			<br>
 			Constant(x):<input name="rx" type="range" min="-2.0" max="2.0" step="0.0001" style="width:300px;">

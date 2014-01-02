@@ -18,7 +18,7 @@ function parseFragment(e){
   var state = $.deparam.fragment(true);
   settings = $.extend(defaultSettings, state);
   //settings.resolution = Math.min(settings.resolution, maxRes);
-  $('#options input').each(function(){
+  $('#options input, #options select').each(function(){
     var $this = $(this);
     if (this.type == 'checkbox'){
       $this.attr('checked', !!settings[this.name]);
@@ -31,16 +31,21 @@ function parseFragment(e){
   //console.log(settings);
   render();
 }
-$('#options input').live('change', function(e){
+$('#options input, #options select').live('change', function(e){
   var state = $.deparam.fragment(true);
-  if (e.target.type == "checkbox"){
-    state[e.target.name] = !!e.target.checked;
-  }else if(e.target.type == "radio"){
-    state[e.target.name] = e.target.value;
+  var $el = $(e.target),
+      type = $el.attr('type'),
+      name = $el.attr('name'),
+      val = $el.val();
+  
+  if (type == "checkbox"){
+    state[name] = !!e.target.checked;
+  }else if(type == "radio"){
+    state[name] = val;
   }else if (e.target.name == "resolution"){
-    state[e.target.name] = Math.min(e.target.value, maxRes);
+    state[name] = Math.min(val, maxRes);
   }else{
-    state[e.target.name] = e.target.value;
+    state[name] = val;
   }
   $.bbq.pushState(state);
 });
