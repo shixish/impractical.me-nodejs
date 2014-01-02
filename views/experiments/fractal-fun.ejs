@@ -1,2 +1,29 @@
 <% layout('experiment-layout') -%>
-<div id="demo-content"></div>
+<% script('/experiments/fractal-fun/jquery.min.js') -%>
+<% script('/experiments/fractal-fun/jquery.ba-bbq.min.js') -%>
+<% script('/experiments/fractal-fun/helper.js') -%>
+<% script('/experiments/fractal-fun/script.js') -%>
+<% stylesheet('/experiments/fractal-fun/style.css') -%>
+<div id="demo-content">
+  <div id="options">
+    Resolution:<input name="resolution" type="number" min="50" max="4000" step="50" style="width:60px;">
+    Depth:<input name="maxDepth" type="number" min="0" max="512" step="64" style="width:40px;">
+    Zoom:<input name="zoom" type="range" min="-3.0" max="0.00001" step="0.00001" style="width:100px;">
+    X offset:<input name="offx" type="number" min="-4.0" max="4.0" step="0.5" style="width:50px;">
+    Y offset:<input name="offy" type="number" min="-4.0" max="4.0" step="0.5" style="width:50px;">
+    <br>
+    Function: 
+    <select name="fn">
+      <option value="sq">squared</option>
+      <option value="sin">sine</option>
+      <option value="cos">cosine</option>
+      <option value="sinh">sinh</option>
+      <option value="cosh">cosh</option>
+    </select>
+    <input name="colorize" type="checkbox">Colorize
+    <br>
+    Constant(x):<input name="rx" type="range" min="-2.0" max="2.0" step="0.0001">
+    Constant(y):<input name="ry" type="range" min="-2.0" max="2.0" step="0.0001">
+  </div>
+  <canvas id="output">
+</div>

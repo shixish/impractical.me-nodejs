@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Fractal Fun - Jun 6, 2011</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+		<script src="jquery.ba-bbq.min.js" type="text/javascript"></script>
+		<script>
+			//see: http://staff.jccc.net/swilson/complex/functionsofi.htm
+			var sin = Math.sin, cos = Math.cos, tan = Math.cos,
+				sinh = function(Angle) { // Angle in radians
+					var e=Math.E;
+					var p=Math.pow(e,Angle);
+					var n=1/p;
+					return (p-n)/2;
+				}, // SinH
+				cosh = function(Angle) { // Angle in radians
+					var e=Math.E;
+					var p=Math.pow(e,Angle);
+					var n=1/p;
+					return (p*1+n*1)/2;
+				}, // CosH
+				tanh = function(Angle) { // Angle in radians
+					var s=sinh(Angle);
+					var c=cosh(Angle);
+					return s/c;
+				}; // TanH
+			var settings,
+				maxRes = Math.max(screen.height, screen.width),
+				defaultSettings = {
+					resolution: Math.min(800, screen.height, screen.width),
+					maxDepth: 64,
+					rx: Math.random(),
+					ry: Math.random(),
+					colorize: true
+				},
+				zoom = 3,
+				offx = -.5,
+				offy = 0,
+				colorness = Math.floor(255/2);
+				
+				
+			function parseFragment(e){
+				var state = $.deparam.fragment(true);
+				settings = $.extend(defaultSettings, state);
+				//settings.resolution = Math.min(settings.resolution, maxRes);
+				for (var x in settings){
+					var $elem = $('#'+x);
+					if ($elem.attr('type') == 'checkbox')
+						$elem.attr('checked', !!settings[x])
+					else
+						$elem.val(settings[x]);
+				}
+				render();
+			}
+			$('#options input').live('change', function(e){
+				var state = $.deparam.fragment(true);
+				if (e.target.type == "checkbox")
+					state[e.target.id] = !!e.target.checked;
+				else if (e.target.id == "resolution")
+					state[e.target.id] = Math.min($(e.target).val(), maxRes);
+				else
+					state[e.target.id] = $(e.target).val();
+				$.bbq.pushState(state);
+			});
+			$(window).bind('hashchange', function(e) {
+				parseFragment(e);
+			});
+			$(document).ready(function(){
+				console.log(Math.min(screen.height, screen.width), screen.height, screen.width);
+				$('#resolution').attr('max', maxRes);
+				parseFragment();
+			});
+			function sq(n){
+				return n*n;
+			}
+			function decimalToHex(d) {
+			  var hex = Number(d).toString(16);
+			  hex = "000000".substr(0, 6 - hex.length) + hex; 
+			  return hex;
+			}
+			
+			function breakout(x, y, count){
+				count = count || 0;
+				//var nx = sq(x)-sq(y)-settings.rx, ny = 2*x*y-settings.ry; //squared
+				//var nx = sinh(x)*cos(y)-settings.rx, ny = cosh(x)*sin(y)-settings.ry; //sinh
+				var nx = sin(x)*cosh(y)-settings.rx, ny = cos(x)*sinh(y)-settings.ry; //sin
+				if (count >= settings.maxDepth || sq(nx)+sq(ny) > 4)
+					return count;
+				else
+					return breakout(nx, ny, count+1);//using 1+1i as c
+			}
+			function render() {
+				var grayscale = Math.floor(255/settings.maxDepth);
+				var canvas = $('#output')[0];
+				//var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+				var r, g, b;
+				
+				canvas.width = settings.resolution;
+				canvas.height = settings.resolution;
+				var hw = canvas.width/2;
+					hh = canvas.height/2;
+				
+				for ( var x = 0; x < canvas.width; x++ ) {
+					for ( var y = 0; y < canvas.height; y++ ) {
+						//console.log('(', x-hw, y-hw, ')');
+						var tx = (offx+(x-hw)/hw)*zoom,
+							ty = (offy+(y-hh)/hh)*zoom;
+						var num = breakout(tx, ty);
+						if (num){
+							//console.log('returned:', num, colorConst);
+							if (settings.colorize){
+								var color = num%64;
+								r = g = b = 0;
+								for (var t = 0; t < 2; t++){
+									if (color & 1) b += colorness;
+									if (color & 2) g += colorness;
+									if (color & 4) r += colorness;
+									color = color >>> 3;
+								}
+							}else{
+								r = g = b = num*grayscale;
+							}
+							ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+							ctx.fillRect(x, y, 1, 1);
+						}
+					}
+				}
+				//$('#output').html(canvas);
+				//document.body.appendChild(canvas);
+			}
+		</script>
+		<style>
+			body{
+				background: #000000;
+				height:100%;
+				width:100%;
+			}
+			html,body,canvas{
+				margin:0px;
+				padding:0px;
+				overflow:hidden;
+			}
+			canvas{
+				width:100%;
+				height:100%;
+			}
+			#options{
+				position:absolute;
+				top:0;
+				left:0;
+				color:white;
+				background:RGBA(22,22,22,.5);
+				width:100%;
+				padding:10px 0 10px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="options">
+			Resolution:<input id="resolution" type="number" min="10" max="4000" step="10">
+			Detail:<input id="maxDepth" type="number" min="1" max="400" step="1">
+			Constant(x):<input id="rx" type="range" min="-2.0" max="2.0" step="0.0001" style="width:300px;">
+			Constant(y):<input id="ry" type="range" min="-2.0" max="2.0" step="0.0001" style="width:300px;">
+			<input id="colorize" type="checkbox">Colorize
+		</div>
+		<canvas id="output"></div>
+	</body>
+</html>

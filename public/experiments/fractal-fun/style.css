@@ -1,0 +1,13 @@
+#output{
+  position:relative;
+}
+#options{
+  position:absolute;
+  z-index: 20;
+  color:white;
+  background:RGBA(22,22,22,.5);
+  padding:10px;
+}
+input[type="range"]{
+  width:250px;
+}
