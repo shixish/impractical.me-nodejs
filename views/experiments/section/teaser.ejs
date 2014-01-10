@@ -1,21 +1,22 @@
 <% 
-  var teaser_id = teaser_url.replace("/", "--"),
+  var teaser_id = teaser_node.uri.replace("/", "--"),
       use_carousel = teaser_node.images && teaser_node.images.length > 1;
 %>
 <div class="col-md-6 portfolio-item">
   <div id="<%- teaser_id %>"<%- use_carousel?' class="carousel slide"':'' %>>
     <% if (teaser_node.images && teaser_node.images[0].src){ %>
       <% if (teaser_node.images.length > 1){ %>
+        <% var num_images = teaser_node.images.length; %>
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <% for (var i in teaser_node.images){ %>
+          <% for (var i = 0; i < num_images; i++){ %>
           <li data-target="#<%- teaser_id %>" data-slide-to="<%- i %>"<%- (i==0?' class="active"':'') %>></li>
           <% } %>
         </ol>
         
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-          <% for (var i in teaser_node.images){ %>
+          <% for (var i = 0; i < num_images; i++){ %>
           <div class="item<%- (i==0?' active':'') %>">
             <img class="img-responsive" src="<%- teaser_node.images[i].src %>">
             <div class="carousel-caption">
@@ -25,14 +26,14 @@
           <% } %>
       </div>
       <% }else{ %>
-        <a href="/<%= teaser_url %>"><img class="img-responsive" src="<%- teaser_node.images[0].src %>"></a>
+        <a href="/<%= teaser_node.uri %>"><img class="img-responsive" src="<%- teaser_node.images[0].src %>"></a>
       <% } %>
     <% }else{ %>
-      <a href="/<%= teaser_url %>"><img class="img-responsive" src="http://placehold.it/750x450"></a>
+      <a href="/<%= teaser_node.uri %>"><img class="img-responsive" src="http://placehold.it/750x450"></a>
     <% } %>
   </div>
   <h3>
-    <a href="/<%= teaser_url %>"><%= teaser_node.title %></a>
+    <a href="/<%= teaser_node.uri %>"><%= teaser_node.title %></a>
     <% if (teaser_node.date){ %>
       <small><%= format_date(teaser_node.date) %></small>
     <% } %>

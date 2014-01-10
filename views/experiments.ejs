@@ -3,13 +3,12 @@
   <% include section/header %>
   <% include section/breadcrumb %>
   
-  <% for (var i in node.experiments){ %>
+  <% for (var i = 0; i < node.experiments.length; i++){ %>
     <% if (i%2==0){ %>
       <div class="row">
     <% } %>
     <%
-      teaser_url = node.experiments[i];
-      teaser_node = nodes[teaser_url];
+      teaser_node = node.experiments[i];
     %>
     <% include experiments/section/teaser %>
     

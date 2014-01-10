@@ -5,7 +5,8 @@ var express = require('express'),
     util = require('util'),
     path = require('path'),
     mongoose = require('mongoose'),
-    extend = require('mongoose-schema-extend');
+    extend = require('mongoose-schema-extend'),
+    async = require('async');
     
 var Schema = mongoose.Schema;
 
@@ -17,14 +18,34 @@ var db = mongoose.connect(mongoUri);
 var NodeSchema = Schema({
   title: String,
   subtitle: String,
-  uri: String,
+  uri: {type: String, index: true, required: '{PATH} is required!'},
+  link: String,//hyperlink link label, or default to title
   description: String,
   updated: Date,
   created: Date,
-}, { collection : 'nodes' });
+}, { collection : 'nodes', index: true });
+
+//NodeSchema.methods.getBreadcrumb = function (done) {
+//  var paths = [];
+//  var uri_pos = 0;
+//  while (uri_pos = this.uri.indexOf('/', uri_pos)+1) {
+//    paths.push(this.uri.substr(0,uri_pos-1));
+//  }
+//  async.map(paths, function(path, map_callback){
+//    //grab the title, and link value of 
+//    this.model('Node').findOne({uri: path}, 'title link uri', map_callback);
+//  }, function(err, results){
+//    var ret = {};
+//    for (var i in results){
+//      ret[results[i].uri] = results[i].link?results[i].link:results[i].title;
+//    }
+//    this.breadcrumb = ret;
+//    done();
+//  });
+//}
 
 var ExperimentSchema = NodeSchema.extend({
-  images: Array,
+  images: [{src: String, caption: String}],
   github: String,
   instructions: String,
 });
@@ -69,97 +90,6 @@ function render404(res){
   res.status(404).render('404.ejs', {node: {title: "Page not found"}});
 }
 
-//This should be in a database soon...
-var nodes = {};
-//var nodes = {
-//  //special:
-//  'home':{
-//    title: 'Home',
-//  },
-//  '404':{
-//    title: 'Page not found',
-//  },
-//  //regular:
-//  'about':{
-//    title: "About Me",
-//    link: "About",
-//  },
-//  'experiments':{
-//    title: "Experiments",
-//    description: "This is a collection of my hair-brained schemes that I tinker around with for fun.",
-//    experiments: [
-//      'experiments/music',
-//      'experiments/chroma-key',
-//      'experiments/fractal-fun',
-//    ]
-//  },
-//  'experiments/music':{
-//    title: "Music Generation",
-//    date: 1379845327499,
-//    description: "I have been experimenting with music generation using JavaScript and Midi.",
-//    github: 'https://github.com/shixish/music',
-//    images: [
-//      {
-//        src: "/experiments/music/teaser.png",
-//      }
-//    ]
-//  },
-//  'experiments/chroma-key':{
-//    title: "Image Processing Project",
-//    subtitle: "Chroma Key",
-//    date: 1386889893176,
-//    description: "I made this project using HTML5 Canvas and the new getUserMedia() function to interact with the user's webcam through the browser. I made this for my Image Processing class (Fall 2013). I spent about a day working on it. The idea is to do chroma keying (green screen) to remove certain pixels. I tried out a couple of different made-up techniques. Check out the results!",
-//    instructions: "I think this only works in Google Chrome, but it may also work in Firefox (dunno). Your browser should ask you if you want to share your webcam, then you should see your beautiful mug pop up over the image of the beach.<br>There are three settings. Each of which work poorly (lol), but are fun nonetheless.",
-//    github: 'https://github.com/shixish/chroma-key',
-//    images: [
-//      {
-//        src: "/experiments/chroma-key/imgs/results/normal.jpg",
-//        caption: "Normal",
-//      },{
-//        src: "/experiments/chroma-key/imgs/results/chroma-key.jpg",
-//        caption: "Key out blue",
-//      },{
-//        src: "/experiments/chroma-key/imgs/results/subtraction.jpg",
-//        caption: "Subtract the background",
-//      },{
-//        src: "/experiments/chroma-key/imgs/results/subtraction2.jpg",
-//        caption: "Subtract the background (junk)",
-//      },{
-//        src: "/experiments/chroma-key/imgs/results/fancy.jpg",
-//        caption: "Fancy made up method",
-//      },{
-//        src: "/experiments/chroma-key/imgs/results/fancy2.jpg",
-//        caption: "Creepy fancy",
-//      },
-//    ]
-//  },
-//  'experiments/fractal-fun':{
-//    title: "Fractal Fun",
-//    date: 1310437739429,
-//    description: "This is my funky fractal generator that I made a while back.",
-//    github: 'https://github.com/shixish/fractal-fun',
-//    images: [
-//      {
-//        src: "/experiments/fractal-fun/teaser.png",
-//      }
-//    ]
-//  },
-//};
-
-//for (var n in nodes) {
-//  if (n.indexOf('/') != -1) {
-//    node = new Experiment(nodes[n]);
-//  }else{
-//    node = new Node(nodes[n]);
-//  }
-//  node.uri = n;
-//  node.save();
-//}
-
-//Node.find(function (err, n) {
-//  console.log("nodes: ", n);
-//});
-
 var main_menu = {
   'About':'about',
   'Experiments':'experiments',
@@ -168,59 +98,72 @@ var main_menu = {
   //},
 };
 
-function renderNode(path, res) {
+function getBreadcrumb(uri, callback) {
+  var paths = [];
+  var uri_pos = 0;
+  while (uri_pos = uri.indexOf('/', uri_pos)+1) {
+    paths.push(uri.substr(0,uri_pos-1));
+  }
+  async.map(paths, function(path, map_callback){
+    //grab the title, and link value of 
+    Node.findOne({uri: path}, 'title link uri', map_callback);
+  }, function(err, results){
+    var ret = {};
+    for (var i in results){
+      ret[results[i].uri] = results[i].link?results[i].link:results[i].title;
+    }
+    callback(ret);
+  });
+}
+
+function renderNode(path, res, pre_render) {
   Node.findOne({uri: path}, function(error, node){
     if (node) {
-      res.render(path+'.ejs', {node:node});
+      var ready = function(){
+        //console.log("rendering:", node);
+        res.render(path+'.ejs', {node:node});
+      };
+      getBreadcrumb(path, function(result){
+        node.breadcrumb = result;
+        if (pre_render){
+          pre_render(node, ready);
+        }else{
+          ready();
+        }
+      });
     }else{
       render404(res);
     }
   });
 }
 
-//handle 'home' seperately...
 app.get('/', function(req, res) {
-  //response.render('index.ejs', {node:nodes['home']});
   renderNode('home', res);
 });
 
-////generate the routes from the nodes data above.
-//function generateRoutes() {
-//  for (var url in nodes){
-//    (function(url, data) {
-//      app.get('/'+url, function(request, response) {
-//        response.render(url+'.ejs', {node:data, url:url});
-//      });
-//    })(url, nodes[url]);
-//  }
-//}
-
-//generateRoutes();
-app.get('/:path', function (req, res) {
-  renderNode(req.params.path, res);
+app.get('/about', function (req, res) {//used to render experiment urls
+  renderNode("about", res);
 });
-//app.get('/experiments/:path', function (req, res) {
-//  
+
+app.get('/experiments', function(req, res){
+  renderNode('experiments', res, function(node, ready){//pre-render function
+    Node.find({__t: 'Experiment'}, function(error, nodes){
+      //console.log(nodes);
+      node.experiments = nodes || [];
+      ready();
+    });
+  });
+});
+
+app.get('/experiments/:experiment', function (req, res) {//used to render experiment urls
+  renderNode("experiments/" + req.params.experiment, res);
+});
+
+//app.get('/:path', function (req, res) {
+//  renderNode(req.params.path, res);
 //});
 
-
-//var routes = {};
-//for (var url in routes){
-//  (function(url, data) {
-//    app.get('/'+url, function(request, response) {
-//      Node.findOne({uri: uri}, function(error, node){
-//        if (node) {
-//          response.render(uri+'.ejs', {node:node});
-//        }else{
-//          render404(response);
-//        }
-//      });
-//    });
-//  })(url, nodes[url]);
-//}
-
 //allow templates to use these variables:
-app.locals.nodes = nodes;
 app.locals.main_menu = main_menu;
 
 //returns a random id as a string.
