@@ -8,17 +8,22 @@
     </div>
     <div class="col-md-4">
       <% if (node.subtitle) {%>
-        <h3><%=node.subtitle%></h3>
+        <h3>
+        <%=node.subtitle%>
+        <% if (node.created){ %>
+          <small><%- format_date(node.created) %></small>
+        <% } %>
+        </h3>
       <%}%>
       <% if (node.description) {%>
-        <p><%=node.description%></p>
+        <p><%-node.description%></p>
       <%}%>
       <% if (node.instructions) {%>
         <hr>
-        <p><%=node.instructions%></p>
+        <p><%-node.instructions%></p>
       <%}%>
-      <% if (node.date) {%>
-        <i><%=format_date(node.date)%></i>
+      <% if (node.updated) {%>
+        <i>Last update: <%-format_date(node.updated, true)%></i>
       <%}%>
       <% if (node.github) {%>
       <div class="list-social-icons-3x">

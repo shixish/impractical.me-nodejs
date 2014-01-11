@@ -25,25 +25,6 @@ var NodeSchema = Schema({
   created: Date,
 }, { collection : 'nodes', index: true });
 
-//NodeSchema.methods.getBreadcrumb = function (done) {
-//  var paths = [];
-//  var uri_pos = 0;
-//  while (uri_pos = this.uri.indexOf('/', uri_pos)+1) {
-//    paths.push(this.uri.substr(0,uri_pos-1));
-//  }
-//  async.map(paths, function(path, map_callback){
-//    //grab the title, and link value of 
-//    this.model('Node').findOne({uri: path}, 'title link uri', map_callback);
-//  }, function(err, results){
-//    var ret = {};
-//    for (var i in results){
-//      ret[results[i].uri] = results[i].link?results[i].link:results[i].title;
-//    }
-//    this.breadcrumb = ret;
-//    done();
-//  });
-//}
-
 var ExperimentSchema = NodeSchema.extend({
   images: [{src: String, caption: String}],
   github: String,
@@ -147,7 +128,7 @@ app.get('/about', function (req, res) {//used to render experiment urls
 
 app.get('/experiments', function(req, res){
   renderNode('experiments', res, function(node, ready){//pre-render function
-    Node.find({__t: 'Experiment'}, function(error, nodes){
+    Node.find({__t: 'Experiment'}, null, {sort: {updated: -1}}, function(error, nodes){
       //console.log(nodes);
       node.experiments = nodes || [];
       ready();
@@ -191,8 +172,10 @@ function format_day(day){
 }
 
 app.locals.format_date = function(timestamp, use_short){
-  var date = new Date(timestamp); use_mon = use_short?short_mon:long_mon;
-  return use_mon[date.getMonth()] + " " + format_day(date.getDate()) + ", " + date.getFullYear();
+  var date = new Date(timestamp),
+      use_mon = use_short?short_mon:long_mon,
+      str_date = use_mon[date.getMonth()] + " " + format_day(date.getDate()) + ", " + date.getFullYear();
+  return '<time datetime="'+date.toISOString()+'" title="'+date.toDateString()+'">'+str_date+'</time>';
 }
 
 //useful if you need to get an absolute url to a template file

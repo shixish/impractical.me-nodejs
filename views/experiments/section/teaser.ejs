@@ -34,8 +34,8 @@
   </div>
   <h3>
     <a href="/<%= teaser_node.uri %>"><%= teaser_node.title %></a>
-    <% if (teaser_node.date){ %>
-      <small><%= format_date(teaser_node.date) %></small>
+    <% if (teaser_node.created){ %>
+      <small><%- format_date(teaser_node.created) %></small>
     <% } %>
   </h3>
   <p><%= teaser_node.description %></p>
