@@ -7,12 +7,12 @@
         <ul class="dropdown-menu">
           <%for (var inner_label in value) {
             var inner_value = value[inner_label];%>
-            <li><a href="/<%-inner_value%>"><%=inner_label%></a></li>
+            <li><a href="/<%-inner_value%>/"><%=inner_label%></a></li>
           <%}%>
         </ul>
       </li>
     <%}else{%>
-      <li><a href="/<%-value%>"><%=label%></a></li>
+      <li><a href="/<%-value%>/"><%=label%></a></li>
     <%}
   }%>
 </ul>

@@ -122,11 +122,11 @@ app.get('/', function(req, res) {
   renderNode('home', res);
 });
 
-app.get('/about', function (req, res) {//used to render experiment urls
+app.get('/about/', function (req, res) {//used to render experiment urls
   renderNode("about", res);
 });
 
-app.get('/experiments', function(req, res){
+app.get('/experiments/', function(req, res){
   renderNode('experiments', res, function(node, ready){//pre-render function
     Node.find({__t: 'Experiment'}, null, {sort: {updated: -1}}, function(error, nodes){
       //console.log(nodes);
@@ -136,7 +136,7 @@ app.get('/experiments', function(req, res){
   });
 });
 
-app.get('/experiments/:experiment', function (req, res) {//used to render experiment urls
+app.get('/experiments/:experiment/', function (req, res) {//used to render experiment urls
   renderNode("experiments/" + req.params.experiment, res);
 });
 
