@@ -3,7 +3,7 @@
 	url = https://github.com/shixish/chroma-key.git
 [submodule "public/experiments/fractal-fun"]
 	path = public/experiments/fractal-fun
-	url = git@github.com:shixish/fractal-fun.git
+	url = https://github.com/shixish/fractal-fun.git
 [submodule "public/experiments/music"]
 	path = public/experiments/music
-	url = git@github.com:shixish/music.git
+	url = https://github.com/shixish/music.git
