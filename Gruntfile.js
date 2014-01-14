@@ -69,6 +69,9 @@ module.exports = function(grunt) {
   //grunt.registerTask('default', [ 'less', 'uglify', 'copy', 'exec:build' ]);
   //grunt.registerTask('deploy', [ 'default', 'exec:deploy' ]);
   
-  grunt.registerTask('default', [ 'compass', 'uglify', 'copy' ]);
+  //grunt.registerTask('default', [ 'compass', 'uglify', 'copy' ]);
+  grunt.registerTask('css', [ 'compass' ]);
+  grunt.registerTask('js', [ 'uglify', 'copy' ]);
+  grunt.registerTask('default', [ 'css', 'js' ]);
   grunt.registerTask('deploy', [ 'default' ]);
 };

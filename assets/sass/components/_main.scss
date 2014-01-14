@@ -180,6 +180,27 @@ footer{
   padding-bottom: 60%;
   max-width: 100%;
   overflow: hidden;
+  &.fullscreen-mode{
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+  }
+  &.blank{
+    background: white !important;
+  }
+}
+
+#fullscreen-button{
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  background: silver;
+  background: rgba(185, 185, 185, 0.90);
+  font-size: 20px;
+  line-height: 20px;
+  padding: 5px 5px 15px 15px;
+  border-bottom-left-radius: 50px;
+  text-align: right;
 }
 
 //about me page
