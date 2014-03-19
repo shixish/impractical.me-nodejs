@@ -72,7 +72,7 @@ function render404(res){
 }
 
 var main_menu = {
-  'About':'about',
+  //'About':'about',
   'Experiments':'experiments',
   //'Resume': {
   //  'Koalafications': '/'
@@ -122,9 +122,9 @@ app.get('/', function(req, res) {
   renderNode('home', res);
 });
 
-app.get('/about/', function (req, res) {//used to render experiment urls
-  renderNode("about", res);
-});
+// app.get('/about/', function (req, res) {//used to render experiment urls
+//   renderNode("about", res);
+// });
 
 app.get('/experiments/', function(req, res){
   renderNode('experiments', res, function(node, ready){//pre-render function

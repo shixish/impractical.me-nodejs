@@ -46,6 +46,7 @@ module.exports = function(grunt) {
             'bower_components/bootstrap/js/scrollspy.js',
             'bower_components/bootstrap/js/tab.js',
             'bower_components/bootstrap/js/affix.js',
+            'assets/js/libs/jquery.easing.min.js',
             'assets/js/app.js'
           ],
           'public/js/libs/modernizr.min.js': 'bower_components/modernizr/modernizr.js'

@@ -1,45 +1,236 @@
 <% layout('layout') -%>
-<div id="myCarousel" class="carousel slide">
-  <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+<!-- Full Page Image Header Area -->
+<div id="top" class="header">
+  <div class="vert-text">
+    <h1 id="title">impractical&middot;me</h1>
+    <h3>
+      Because I can.
+    </h3>
+    <div class="page-scroll">
+      <a href="#about" class="btn btn-circle">
+      <i class="fa fa-angle-double-down animated"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- /Full Page Image Header Area -->
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <div class="fill" style="background-image:url('img/intro.jpg');"></div>
+<div id="about" class="placemark"></div>
+<div class="content-section-c">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+        <hr class="section-heading-spacer">
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Hi, I'm Andrew</h2>
+        <p class="lead">
+          This is my website. <br>
+          Check out what I've been up to!
+        </p>
       </div>
-      <div class="item">
-        <div class="fill" style="background-image:url('img/coconutrainbow2.jpg');"></div>
-        <div class="carousel-caption">
-          <h1>I live in Hilo, Hawaii</h1>
-        </div>
+      <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+        <img class="img-responsive rounded" src="/img/me-small.jpg">
       </div>
-      <div class="item">
-        <div class="fill" style="background-image:url('img/epscor-website-small.jpg');"></div>
-        <div class="carousel-caption">
-          <h1>I develop websites</h1>
+    </div>
+  </div>
+</div>
+
+<div class="content-section-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <h2>Education</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6 col-lg-offset-1 col-sm-push-6">
+        <h3 class="section-heading">
+          Computer Science Degree<br>
+          <small>Fall 2013</small>
+        </h3>
+        <p><i class="fa fa-check-circle-o fa-lg fa-fw"></i> Completed my Bachelors of Science in Computer Science from the University of Hawaii at Hilo in December of 2013.</p>
+        <p><i class="fa fa-sitemap fa-lg fa-fw"></i> Received a certificate in database management</p>
+        <img class="img-responsive rounded" src="/img/uhh-small.png">
+      </div>  
+      <div class="col-lg-5 col-sm-6 col-sm-pull-6 hidden-xs">
+        <img class="img-responsive rounded" src="/img/graduation-small.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-section-b">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <h2>Work Experience</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+        <h3 class="section-heading">
+          Software Engineer at <a href="http://hawaiitass.com/">Hawaii TASS</a><br>
+          <small>December 2013 - Present</small>
+        </h3>
+        <p><i class="fa fa-tasks fa-lg fa-fw"></i> Developing Websites using Drupal, Laravel, etc</p>
+        <p><i class="fa fa-android fa-lg fa-fw"></i> Developing Android applications</p>
+      </div>
+      <div class="col-lg-5 col-sm-6 col-lg-offset-2 hidden-xs">
+        <img class="img-responsive rounded" src="/img/TASS-cellphone-2.png">
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6 col-lg-offset-1 col-sm-push-6">
+        <h3 class="section-heading">
+          EPSCoR Program at UH Hilo<br>
+          <small>Spring 2010 – Fall 2013</small>
+        </h3>
+        <p><i class="fa fa-users fa-lg fa-fw"></i> Co-lead developer of the <a href="http://www.epscor.hawaii.edu/" target="_blank">Hawaii EPSCoR site</a></p>
+        <p><i class="fa fa-star fa-lg fa-fw"></i> Developer on spin-off <a href="http://epscorreporting.com/" target="_blank">national program</a> involing 6+ other US states</p>
+      </div>  
+      <div class="col-lg-5 col-sm-6 col-sm-pull-6 hidden-xs">
+        <img class="img-responsive rounded" src="/img/epscor_hi_logo2.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="projects" class="content-section-c">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <h2>Projects</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-5 text-center">
+        <div class="service-item">
+          <h4>TODO</h4>
+          <p>Hehe... I'll get around to filling this out soon!</p>
         </div>
       </div>
     </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="icon-next"></span>
-    </a>
+  </div>
 </div>
+
+<!-- Callout -->
+<div class="callout">
+  <div class="vert-text">
+    <h1>And now for something completely different...</h1>
+  </div>
+</div>
+<!-- /Callout -->
+
+<div class="content-section-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h2>Favorite Technologies</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6 col-lg-offset-1 col-sm-push-6">
+        <p><i class="fa fa-code fa-lg fa-fw"></i> All things <strong>HTML<i class="fa fa-html5 fa-fw" title="HTML5"></i></strong> &amp; <strong>CSS<i class="fa fa-css3 fa-fw" title="CSS3"></i></strong></p>
+        <p><i class="fa fa-bolt fa-lg fa-fw"></i> All things <strong>JavaScript</strong></p>
+        <p><i class="fa fa-wrench fa-lg fa-fw"></i> All things <strong>PHP</strong></p>
+        <p><i class="fa fa-tablet fa-lg fa-fw"></i> <strong>Mobile</strong> applications</p>
+        <p><i class="fa fa-picture-o fa-lg fa-fw"></i> Data <strong>visualization</strong> &amp; <strong>graphics</strong></p>
+        <p><i class="fa fa-code-fork fa-lg fa-fw"></i> <strong>Git</strong> version control</p>
+      </div>  
+      <div class="col-lg-5 col-sm-6 col-sm-pull-6 hidden-xs">
+        <img class="img-responsive rounded" src="/img/html5-small.jpg">
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+        <h3 class="section-heading">
+          Drupal
+          <small>More than 4 years of experience</small>
+        </h3>
+        <p><i class="fa fa-pencil fa-lg"></i> <strong>Theme</strong> Design</p>
+        <p><i class="fa fa-magic fa-lg"></i> Custom <strong>Modules</strong></p>
+        <p><i class="fa fa-exchange fa-lg"></i> Site <strong>Migrations</strong></p>
+        <p><i class="fa fa-columns fa-lg"></i> Content <strong>Management</strong></p>
+        <p><em>The works...</em></p>
+      </div>
+      <div class="col-lg-5 col-sm-6 col-lg-offset-2 hidden-xs">
+        <img class="img-responsive rounded" src="/img/drupal.png">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="services" class="content-section-c">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <h2><i class="fa fa-beer"></i> Experiments</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <div class="service-item">
+          <p>
+            <big>Check out some of the wonky stuff I've put together...</big>
+          </p>
+          <p>
+            <a href="/experiments/" class="btn btn-lg btn-default">Check it out!</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-section-b">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <h2>Other Interests</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6 col-lg-offset-1 col-sm-push-6">
+        <h3 class="section-heading">
+          Table Tennis!<br>
+          <small>Current member of <a href="http://bitta.org/" target="_blank" title="BITTA">Big Island Table Tennis Association</a></small>
+        </h3>
+        <p><i class="fa fa-map-marker fa-lg"></i> Tuesdays and Weekends at the <a href="http://www.bgcbi.com/" target="_blank">Boys and Girls Club of the Big Island</a></p>
+        <p><i class="fa fa-thumbs-o-up fa-lg"></i> We collaborate with the Boys and Girls club and offer free coaching to the kids every Tuesday</p>
+      </div>
+      <div class="col-lg-5 col-sm-6 col-sm-pull-6 hidden-xs">
+        <img class="img-responsive rounded" src="/img/Table-Tennis-small.jpg">
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+        <h3 class="section-heading">
+          Video Games!<br>
+          <small>Woohoo!</small>
+        </h3>
+        <p><i class="fa fa-crosshairs fa-lg fa-fw"></i> I like the realtime strategy game StarCraft 2</p>
+        <p><i class="fa fa-fire fa-lg fa-fw"></i> I also enjoy the complexity of Path of Exile</p>
+      </div>  
+      <div class="col-lg-5 col-sm-6 col-lg-offset-2 hidden-xs">
+        <img class="img-responsive rounded" src="/img/kerigan-small.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 
 <div class="content">
   <div class="section">
     <div class="container">
       <div class="row text-center">
-        <div class="col-lg-3 col-md-3">
-        </div>
+        <div class="col-lg-3 col-md-3"></div>
         <div class="col-lg-3 col-md-3">
           <h3><i class="fa fa-user"></i> <a href="/about/">About Me</a></h3>
           <p>Get the lowdown on who I am, where I'm from, and what I do.</p>
@@ -48,9 +239,37 @@
           <h3><i class="fa fa-beer"></i> <a href="/experiments/">Experiments</a></h3>
           <p>Check out some of the wonky stuff I've put together.</p>
         </div>
-        <div class="col-lg-3 col-md-3">
-        </div>
-      </div><!-- /.row -->
-    </div><!-- /.container -->
-  </div><!-- /.section -->
+        <div class="col-lg-3 col-md-3"></div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Call to Action -->
+<div class="call-to-action">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3>About this site</h3>
+        <big>
+          I made this using <a href="http://nodejs.org/" target="_blank">Node.js</a> with <a href="http://expressjs.com/" target="_blank">Express</a> and the <a href="http://embeddedjs.com/" target="_blank">EJS</a> template engine. Why?<br>
+          <em>Because I can...</em>
+        </big>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Call to Action -->
+
+<div id="social" class="container">
+  <div class="col-lg-12 text-center">
+    <ul class="list-unstyled list-inline list-social-icons-5x">
+      <li class="tooltip-social github-link"><a href="https://github.com/shixish" data-toggle="tooltip" data-placement="top" title="GitHub"><i class="fa fa-github-alt fa-5x"></i></a></li>
+      <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/ShiXish" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-5x"></i></a></li>
+      <li class="tooltip-social linkedin-link"><a href="http://lnkd.in/vbVRjh" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-5x"></i></a></li>
+      <li class="tooltip-social google-plus-link"><a href="https://plus.google.com/105340188160086859781/posts" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-5x"></i></a></li>
+      <li class="tooltip-social twitter-link"><a href="https://twitter.com/shixish" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-5x"></i></a></li>
+      <li class="tooltip-social stack-overflow-link"><a href="http://stackoverflow.com/users/711895/andrew" data-toggle="tooltip" data-placement="top" title="Stack Overflow"><i class="fa fa-stack-overflow fa-5x"></i></a></li>
+    </ul>
+  </div>
 </div>
